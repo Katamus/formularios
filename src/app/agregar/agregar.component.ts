@@ -15,9 +15,9 @@ interface Usuario{
 export class AgregarComponent implements OnInit {
 
   usuarios:Array<Usuario> = new Array<Usuario>();
-
+  esNuevo:boolean = true;
   formularioCreado!: FormGroup;
-
+  posicionEditar:number = -1;
   constructor(private formBuilder:FormBuilder) { 
 
   }
@@ -42,5 +42,29 @@ export class AgregarComponent implements OnInit {
     this.usuarios.push(this.formularioCreado.value as Usuario);
     this.formularioCreado.reset();
   }
+  editar(){
+    this.usuarios[this.posicionEditar].nombre = this.formularioCreado.value.nombre;
+    this.usuarios[this.posicionEditar].correo = this.formularioCreado.value.correo;
+    this.usuarios[this.posicionEditar].password = this.formularioCreado.value.password;
+    this.esNuevo = true;
+    this.formularioCreado.reset();
+    this.posicionEditar = -1;
+  }
+
+  editarUsuario(poscion:number){
+    this.formularioCreado.setValue({
+      nombre:this.usuarios[poscion].nombre,
+      correo:this.usuarios[poscion].correo,
+      password:this.usuarios[poscion].password
+    })
+    this.esNuevo = false;
+    this.posicionEditar = poscion;
+  }
+
+  eliminarUsuario(poscion:number){
+    this.usuarios.splice(poscion,1);
+  }
+
+  
 
 }
