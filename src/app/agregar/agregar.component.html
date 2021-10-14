@@ -1,15 +1,15 @@
 <div class="container">
-    <form action="">
+    <form [formGroup]="formularioCreado">
         <div class="form-group">
             <label class="form-label" >Nombre</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control" formControlName="nombre" >
             <div class="alert alert-danger" role="alert">
                 El nombre es requerido
             </div>
         </div>
         <div class="form-group">
             <label class="form-label">Correo</label>
-            <input type="text" class="form-control" >
+            <input type="text" class="form-control" formControlName="correo" >
             <div class="alert alert-danger" role="alert">
                 El correo es requerido
             </div>
@@ -20,7 +20,7 @@
         
         <div class="form-group">
             <label class="form-label" >Contraseña</label>
-            <input type="password" class="form-control" >
+            <input type="password" class="form-control" formControlName="password" >
             <div class="alert alert-danger" role="alert">
                 la contraseña es requerida
             </div>
